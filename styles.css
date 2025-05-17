@@ -1,0 +1,116 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+html, body {
+  height: 100%;
+  touch-action: none;
+}
+body {
+  overflow: hidden;
+  display: flex;
+  background: #111;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+#drag-container, #spin-container {
+  position: relative;
+  display: flex;
+  margin: auto;
+  transform-style: preserve-3d;
+  transform: rotateX(-10deg);
+}
+
+#drag-container img,
+#drag-container video,
+#drag-container .video-wrapper {
+  transform-style: preserve-3d;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0 8px #fff;
+  -webkit-box-reflect: below 10px linear-gradient(transparent, transparent, #0005);
+}
+
+#drag-container img:hover,
+#drag-container video:hover,
+#drag-container .video-wrapper:hover {
+  box-shadow: 0 0 15px #fffd;
+  -webkit-box-reflect: below 10px linear-gradient(transparent, transparent, #0007);
+}
+
+#drag-container p {
+  font-family: Serif;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotateX(90deg);
+  color: #fff;
+  font-size: 26px;
+  white-space: nowrap;
+  text-align: center;
+  line-height: 1.4;
+  letter-spacing: 1px;
+}
+
+#ground {
+  width: 900px;
+  height: 900px;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%,-50%) rotateX(90deg);
+  background: radial-gradient(circle, #5555 30%, transparent 80%);
+  border-radius: 50%;
+  filter: blur(10px);
+}
+
+#music-toggle {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-size: 24px;
+  color: #fff;
+  cursor: pointer;
+  z-index: 999;
+  user-select: none;
+}
+
+.video-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.video-controls {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  display: flex;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.video-wrapper:hover .video-controls {
+  opacity: 1;
+}
+.video-controls button {
+  background: rgba(0, 0, 0, 0.7);
+  border: none;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+@keyframes spin {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
+}
+@keyframes spinRevert {
+  from { transform: rotateY(360deg); }
+  to { transform: rotateY(0deg); }
+}
